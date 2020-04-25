@@ -43,18 +43,17 @@ redisopts := &cache.RedisOpts{
 
 ## 基本API使用
 
-- [Oauth2 授权](https://github.com/lgs821/jdsdk-go#Oauth2 授权)
-
-  - 发起授权
+- [Oauth2授权](https://github.com/lgs821/jdsdk-go#Oauth2授权)
+- 发起授权
   - 通过code换取access_token
   - 刷新access_token
-
+  
 - [青龙系统](https://github.com/lgs821/jdsdk-go#青龙系统)
   - 下单接口
 - 取消运单
   
 
-## Oauth2 授权
+## Oauth2授权
 
 具体流程请参考文档：[获取accesstoken](https://open.jd.com/home/home#/doc/common?listId=880)
 
