@@ -50,7 +50,6 @@ func (cli *Client) WaybillReceive(req *waybill.LdopWaybillReceiveRequest) (*wayb
 		return nil, err
 	}
 	req.SalePlat = cli.SalePlat
-	req.CustomerCode = cli.CustomerCode
 	apiparams, _ := json.Marshal(req)
 	paramsjson := string(apiparams)
 	sysparams := map[string]string{
@@ -87,7 +86,6 @@ func (cli *Client) CancelWayBill(req *waybill.LdopDeliveryProviderCancelWayBillR
 	if err != nil {
 		return nil, err
 	}
-	req.CustomerCode = cli.CustomerCode
 	req.Source = "JOS"
 	apiparams, _ := json.Marshal(req)
 	paramsjson := string(apiparams)

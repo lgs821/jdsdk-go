@@ -9,12 +9,11 @@ import (
 
 // Context struct
 type Context struct {
-	AppKey       string
-	AppSecret    string
-	ReturnURL    string
-	SalePlat     string
-	CustomerCode string
-	Cache        cache.Cache
+	AppKey    string
+	AppSecret string
+	ReturnURL string
+	SalePlat  string
+	Cache     cache.Cache
 
 	Writer  http.ResponseWriter
 	Request *http.Request

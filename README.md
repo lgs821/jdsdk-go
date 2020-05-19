@@ -12,7 +12,6 @@ config := &jdsdk.Config{
 		AppSecret:    "your appsecret",
 		ReturnURL:    "your retrunurl",
 		SalePlat:     "0030001",
-		CustomerCode: "your customercode",
 		Cache:        memcache,
 	}
 	jd = jdsdk.NewJdsdk(config)
@@ -33,7 +32,6 @@ redisopts := &cache.RedisOpts{
 		AppSecret:    "your appsecret",
 		ReturnURL:    "your retrunurl",
 		SalePlat:     "0030001",
-		CustomerCode: "your customercode",
 		Cache:        RedisCache,
 	}
 	jd = jdsdk.NewJdsdk(config)

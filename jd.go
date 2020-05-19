@@ -16,12 +16,11 @@ type Jdsdk struct {
 
 // Config for user
 type Config struct {
-	AppKey       string
-	AppSecret    string
-	ReturnURL    string
-	SalePlat     string
-	CustomerCode string
-	Cache        cache.Cache
+	AppKey    string
+	AppSecret string
+	ReturnURL string
+	SalePlat  string
+	Cache     cache.Cache
 }
 
 // NewJdsdk init
@@ -36,7 +35,6 @@ func copyConfigToContext(cfg *Config, context *context.Context) {
 	context.AppSecret = cfg.AppSecret
 	context.ReturnURL = cfg.ReturnURL
 	context.SalePlat = cfg.SalePlat
-	context.CustomerCode = cfg.CustomerCode
 	context.Cache = cfg.Cache
 	context.SetAccessTokenLock(new(sync.RWMutex))
 }
