@@ -12,11 +12,11 @@ func (ctx *Context) SetAccessTokenLock(l *sync.RWMutex) {
 }
 
 //GetAccessToken 获取access_token
-func (ctx *Context) GetAccessToken() (accessToken string, err error) {
+func (ctx *Context) GetAccessToken(bizid string) (accessToken string, err error) {
 	ctx.accessTokenLock.Lock()
 	defer ctx.accessTokenLock.Unlock()
 
-	accessTokenCacheKey := fmt.Sprintf("jd_access_token_%s", ctx.AppKey)
+	accessTokenCacheKey := fmt.Sprintf("jd_access_token_%s_%s", ctx.AppKey, bizid)
 	val := ctx.Cache.Get(accessTokenCacheKey)
 	if val != nil {
 		accessToken = val.(string)

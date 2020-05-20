@@ -45,7 +45,7 @@ func NewClient(context *context.Context) *Client {
 
 //WaybillReceive 下单接口
 func (cli *Client) WaybillReceive(req *waybill.LdopWaybillReceiveRequest) (*waybill.JdWaybillReceiveReturn, error) {
-	accessToken, err := cli.GetAccessToken()
+	accessToken, err := cli.GetAccessToken(req.CustomerCode)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func (cli *Client) WaybillReceive(req *waybill.LdopWaybillReceiveRequest) (*wayb
 
 //CancelWayBill 取件单取消
 func (cli *Client) CancelWayBill(req *waybill.LdopDeliveryProviderCancelWayBillRequest) (*waybill.LdopDeliveryProviderCancelWayBillReturn, error) {
-	accessToken, err := cli.GetAccessToken()
+	accessToken, err := cli.GetAccessToken(req.CustomerCode)
 	if err != nil {
 		return nil, err
 	}

@@ -59,8 +59,8 @@ type ResAccessToken struct {
 }
 
 // GetUserAccessToken 通过网页授权的code 换取access_token
-func (oauth *Oauth) GetUserAccessToken() (accessToken string, err error) {
-	accessTokenCacheKey := fmt.Sprintf("jd_access_token_%s", oauth.AppKey)
+func (oauth *Oauth) GetUserAccessToken(bizid string) (accessToken string, err error) {
+	accessTokenCacheKey := fmt.Sprintf("jd_access_token_%s_%s", oauth.AppKey, bizid)
 	val := oauth.Cache.Get(accessTokenCacheKey)
 	if val != nil {
 		accessToken = val.(string)
@@ -71,7 +71,10 @@ func (oauth *Oauth) GetUserAccessToken() (accessToken string, err error) {
 
 // GetUserAccessTokenFromServer 通过网页授权的code 换取access_token
 func (oauth *Oauth) GetUserAccessTokenFromServer(code string) (result ResAccessToken, err error) {
-
+	bizid := oauth.Cache.Get("jd_bizid")
+	if bizid == nil {
+		return
+	}
 	urlStr := fmt.Sprintf(accessTokenURL, oauth.AppKey, oauth.AppSecret, code)
 	var response []byte
 	response, err = util.HTTPGet(urlStr)
@@ -86,7 +89,7 @@ func (oauth *Oauth) GetUserAccessTokenFromServer(code string) (result ResAccessT
 		err = fmt.Errorf("GetUserAccessToken error : errcode=%v , errmsg=%v", result.Code, result.Msg)
 		return
 	}
-	accessTokenCacheKey := fmt.Sprintf("jd_access_token_%s", oauth.AppKey)
+	accessTokenCacheKey := fmt.Sprintf("jd_access_token_%s_%s", oauth.AppKey, bizid.(string))
 	expires := result.ExpiresIn - 1500
 	err = oauth.Cache.Set(accessTokenCacheKey, result.AccessToken, time.Duration(expires)*time.Second)
 	return

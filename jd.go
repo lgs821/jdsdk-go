@@ -45,8 +45,8 @@ func (wc *Jdsdk) GetClient() *client.Client {
 }
 
 //GetAccessToken 获取access_token
-func (wc *Jdsdk) GetAccessToken() (string, error) {
-	return wc.Context.GetAccessToken()
+func (wc *Jdsdk) GetAccessToken(bizid string) (string, error) {
+	return wc.Context.GetAccessToken(bizid)
 }
 
 // GetOauth oauth2网页授权
