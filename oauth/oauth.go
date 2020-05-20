@@ -2,6 +2,7 @@ package oauth
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -73,6 +74,7 @@ func (oauth *Oauth) GetUserAccessToken(bizid string) (accessToken string, err er
 func (oauth *Oauth) GetUserAccessTokenFromServer(code string) (result ResAccessToken, err error) {
 	bizid := oauth.Cache.Get("jd_bizid")
 	if bizid == nil {
+		err = errors.New("商家编号缓存失败")
 		return
 	}
 	urlStr := fmt.Sprintf(accessTokenURL, oauth.AppKey, oauth.AppSecret, code)
